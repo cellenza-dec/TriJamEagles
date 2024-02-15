@@ -20,6 +20,7 @@ public class Board
                 grid[i, j] = GenerateRandomSprite();
             }
         }
+        Display();
     }
     
     public  char GenerateRandomSprite()
@@ -30,6 +31,7 @@ public class Board
     }
     public void Display()
     {
+        Console.Clear();
         Console.Write(" A");
         Console.Write('B');
         Console.Write('C');
@@ -62,5 +64,40 @@ public class Board
     {
         Console.SetCursorPosition(x, y);
         Console.Write(value);
+    }
+    
+    public void MoveUp(int columnNumber)
+    {
+        var temp = grid[0, columnNumber];
+        for (int i = 0; i < 7; i++)
+        {
+            grid[i, columnNumber] = grid[i+1, columnNumber];
+        }
+        grid[7, columnNumber] = temp;
+        Display();
+    }
+    
+    public void MoveDown(int columnNumber)
+    {
+        var temp = grid[7, columnNumber];
+        for (int i = 7; i > 0; i--)
+        {
+            grid[i, columnNumber] = grid[i-1, columnNumber];
+        }
+        grid[0, columnNumber] = temp;
+        Display();
+    }
+    
+    public void MoveBoard(int y, Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.Up:
+                MoveUp(y);
+                break;
+            case Direction.Down:
+                MoveDown(y);
+                break;
+        }
     }
 }

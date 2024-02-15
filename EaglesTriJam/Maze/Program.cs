@@ -4,18 +4,38 @@
 using Maze;
 
 Board board = new Board();
+bool stop = false;
+int columnNumber = 0;
+
+do
+{
+    var direction = InputManager.GetDirection();
+    switch (direction)
+    {
+        case Maze.Direction.Right:
+            columnNumber++;
+            break;
+        case Maze.Direction.Left:
+            columnNumber--;
+            break;
+        case Maze.Direction.Up:
+        case Maze.Direction.Down:
+            board.MoveBoard(columnNumber, direction);
+            break;
+        case Maze.Direction.Stop:
+            stop = true;
+            break;
+    }
     
-board.Display();
-
-// board.UpdateBoardDisplay(1, 1, 'B');
-
-// Console.SetCursorPosition(5, 5);
+}while (!stop);
 
 
-// static char GetRandomSprite()
-// {
-//     var spriteChars = new char[] { '╣', '║', '╗', '╝', '╚', '╔', '╩', '╦', '╠', '═', '╬' };
-//     var random = new Random();
-//     var index = random.Next(0, spriteChars.Length-1);
-//     return spriteChars[index];
-// }
+
+// board.Display();
+//
+// Console.WriteLine();
+// Console.WriteLine();
+// Console.WriteLine();
+//
+// board.MoveDown(0);
+// board.MoveUp(0);

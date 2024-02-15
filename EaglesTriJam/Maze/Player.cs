@@ -6,7 +6,8 @@ public enum Direction
     Up,
     Down,
     Left,
-    Right
+    Right,
+    Stop
 }
 
 public class Player
