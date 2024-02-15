@@ -42,7 +42,7 @@ public class Board
             Console.Write(i+1);
             for (int j = 0; j < 8; j++)
             {
-                if (i == YPlayer && j == XPlayer)
+                if (i == XPlayer && j == YPlayer)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                 }
@@ -112,17 +112,23 @@ public class Board
             switch (direction)
             {
                 case Direction.PlayerUp:
-                    YPlayer--;
-                    break;
-                case Direction.PlayerDown:
-                    YPlayer++;
-                    break;
-                case Direction.PlayerLeft:
                     XPlayer--;
                     break;
-                case Direction.PlayerRight:
+                case Direction.PlayerDown:
                     XPlayer++;
                     break;
+                case Direction.PlayerLeft:
+                    YPlayer--;
+                    break;
+                case Direction.PlayerRight:
+                    YPlayer++;
+                    break;
+            }
+            
+            if(XPlayer == 7 && YPlayer == 7)
+            {
+                DisplayWin();
+                Environment.Exit(0);
             }
         }
         else
@@ -131,6 +137,8 @@ public class Board
         }
         Display();
     }
+    
+    
     
     public Sprite GetNextSprite(Direction direction)
     {
@@ -146,5 +154,12 @@ public class Board
                 default:
                 return Grid[XPlayer, YPlayer+1];
         }
+    }
+    
+    
+    public void DisplayWin()
+    {
+        Console.Clear();
+        Console.WriteLine("You win!");
     }
 }
