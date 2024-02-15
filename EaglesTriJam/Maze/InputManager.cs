@@ -16,6 +16,16 @@ public class InputManager
                 return Direction.Left;
             case ConsoleKey.RightArrow:
                 return Direction.Right;
+            
+            case ConsoleKey.Q:
+                return Direction.PlayerLeft;
+            case ConsoleKey.Z:
+                return Direction.PlayerUp;
+            case ConsoleKey.D:
+                return Direction.PlayerRight;
+            case ConsoleKey.S:
+                return Direction.PlayerDown;
+            
             default:
                 return Direction.Stop;
         }

@@ -1,14 +1,7 @@
 namespace Maze;
 
 
-public enum Direction
-{
-    Up,
-    Down,
-    Left,
-    Right,
-    Stop
-}
+
 
 public class Player
 {

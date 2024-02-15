@@ -4,11 +4,15 @@ namespace Maze;
 
 public class Board
 {
-    public char[] spriteChars =  new char[] { '╣', '║', '╗', '╝', '╚', '╔', '╩', '╦', '╠', '═', '╬' };
-    public int width = 8;
-    public int height = 8;
+    private static readonly char[] Header = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    public int Width = 8;
+    public int Height = 8;
+    public int SelectedColumn = 0;
+    
+    public int XPlayer = 0;
+    public int YPlayer = 0;
 
-    public char[,] grid = new char[8, 8];
+    public Sprite[,] Grid = new Sprite[8, 8];
 
 
     public Board()
@@ -17,29 +21,20 @@ public class Board
         {
             for (int j = 0; j < 8; j++)
             {
-                grid[i, j] = GenerateRandomSprite();
+                Grid[i, j] = Sprite.GetRandomSprite();
             }
         }
         Display();
-    }
-    
-    public  char GenerateRandomSprite()
-    {
-        var random = new Random();
-        var index = random.Next(0, spriteChars.Length-1);
-        return spriteChars[index];
+        Task.Delay(100).Wait();
+        SelectHeader();
+        
+        Console.Write(Grid[0, 1].Character);
     }
     public void Display()
     {
         Console.Clear();
-        Console.Write(" A");
-        Console.Write('B');
-        Console.Write('C');
-        Console.Write('D');
-        Console.Write('E');
-        Console.Write('F');
-        Console.Write('G');
-        Console.Write('H');
+
+        SelectHeader();
         Console.WriteLine();
         
         for (int i = 0; i < 8; i++)
@@ -47,57 +42,109 @@ public class Board
             Console.Write(i+1);
             for (int j = 0; j < 8; j++)
             {
-                Console.Write(grid[i, j]);
+                if (i == YPlayer && j == XPlayer)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                Console.Write(Grid[i, j].Character);
+                Console.ResetColor();
             }
 
             Console.WriteLine();
         }
     }
 
-    public void UpdateCell(int x, int y, char value)
+    public void SelectHeader()
     {
-        grid[x, y] = value;
-        UpdateBoardDisplay(x, y, value);
+        Console.SetCursorPosition(0, 0);
+        Console.Write(' ');
+        for (int i = 0; i < 8; i++)
+        {
+            if (i == SelectedColumn)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            Console.Write(Header[i]);
+            
+            Console.ResetColor();
+        }
     }
     
-    public void UpdateBoardDisplay(int x, int y, char value)
+    public void MoveUp()
     {
-        Console.SetCursorPosition(x, y);
-        Console.Write(value);
-    }
-    
-    public void MoveUp(int columnNumber)
-    {
-        var temp = grid[0, columnNumber];
+        var temp = Grid[0, SelectedColumn];
         for (int i = 0; i < 7; i++)
         {
-            grid[i, columnNumber] = grid[i+1, columnNumber];
+            Grid[i, SelectedColumn] = Grid[i+1, SelectedColumn];
         }
-        grid[7, columnNumber] = temp;
+        Grid[7, SelectedColumn] = temp;
         Display();
     }
     
-    public void MoveDown(int columnNumber)
+    public void MoveDown()
     {
-        var temp = grid[7, columnNumber];
+        var temp = Grid[7, SelectedColumn];
         for (int i = 7; i > 0; i--)
         {
-            grid[i, columnNumber] = grid[i-1, columnNumber];
+            Grid[i, SelectedColumn] = Grid[i-1, SelectedColumn];
         }
-        grid[0, columnNumber] = temp;
+        Grid[0, SelectedColumn] = temp;
         Display();
     }
     
-    public void MoveBoard(int y, Direction direction)
+    public void MoveBoard(Direction direction)
     {
         switch (direction)
         {
             case Direction.Up:
-                MoveUp(y);
+                MoveUp();
                 break;
             case Direction.Down:
-                MoveDown(y);
+                MoveDown();
                 break;
+        }
+    }
+    
+    public void MovePlayer(Direction direction)
+    {
+        if(Sprite.CanMove(Grid[XPlayer, YPlayer], GetNextSprite(direction), direction))
+        {
+            switch (direction)
+            {
+                case Direction.PlayerUp:
+                    YPlayer--;
+                    break;
+                case Direction.PlayerDown:
+                    YPlayer++;
+                    break;
+                case Direction.PlayerLeft:
+                    XPlayer--;
+                    break;
+                case Direction.PlayerRight:
+                    XPlayer++;
+                    break;
+            }
+        }
+        else
+        {
+            Console.Beep();
+        }
+        Display();
+    }
+    
+    public Sprite GetNextSprite(Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.PlayerUp:
+                return Grid[XPlayer-1, YPlayer];
+            case Direction.PlayerDown:
+                return Grid[XPlayer+1, YPlayer];
+            case Direction.PlayerLeft:
+                return Grid[XPlayer, YPlayer-1];
+            case Direction.PlayerRight:
+                default:
+                return Grid[XPlayer, YPlayer+1];
         }
     }
 }

@@ -29,11 +29,11 @@ public class Sprite
     public bool OpenLeft { get; set; }
     public bool OpenRight { get; set; }
 
-    public static char GetRandomSprite()
+    public static Sprite GetRandomSprite()
     {
         var random = new Random();
         var index = random.Next(0, Values.Count-1);
-        return Values[index].Character;
+        return Values[index];
     }
 
 
@@ -42,10 +42,10 @@ public class Sprite
     {
         return direction switch
         {
-            Direction.Up => from.OpenUp && to.OpenDown,
-            Direction.Down => from.OpenDown && to.OpenUp,
-            Direction.Left => from.OpenLeft && to.OpenRight,
-            Direction.Right => from.OpenRight && to.OpenLeft,
+            Direction.PlayerUp => from.OpenUp && to.OpenDown,
+            Direction.PlayerDown => from.OpenDown && to.OpenUp,
+            Direction.PlayerLeft => from.OpenLeft && to.OpenRight,
+            Direction.PlayerRight => from.OpenRight && to.OpenLeft,
             _ => throw new ArgumentException("Invalid direction"),
         };
     }

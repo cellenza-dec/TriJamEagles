@@ -3,5 +3,10 @@ public enum Direction
     Up,
     Down,
     Left,
-    Right
+    Right,
+    PlayerUp,
+    PlayerDown,
+    PlayerLeft,
+    PlayerRight,
+    Stop
 }
