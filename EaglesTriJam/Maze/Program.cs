@@ -4,7 +4,7 @@
 using System.Text.RegularExpressions;
 using Maze;
 
-Board board = new Board();
+Board board = new Board(width:2, height:4);
 bool stop = false;
 
 do
@@ -40,20 +40,7 @@ do
     }
     catch (Exception e)
     {
-        Console.WriteLine(board.Grid[board.XPlayer, board.YPlayer].Character);
-
         Console.Beep();
     }
     
 }while (!stop);
-
-
-
-// board.Display();
-//
-// Console.WriteLine();
-// Console.WriteLine();
-// Console.WriteLine();
-//
-// board.MoveDown(0);
-// board.MoveUp(0);

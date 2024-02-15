@@ -4,22 +4,26 @@ namespace Maze;
 
 public class Board
 {
+    private const int acsiiIndexA = 'A';
     private static readonly char[] Header = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-    public int Width = 8;
-    public int Height = 8;
+    private readonly int _width ;
+    private readonly int _height ;
     public int SelectedColumn = 0;
     
     public int XPlayer = 0;
     public int YPlayer = 0;
 
-    public Sprite[,] Grid = new Sprite[8, 8];
-
-
-    public Board()
+    public readonly Sprite[,] Grid;
+    
+    public Board(int width, int height)
     {
-        for (int i = 0; i < 8; i++)
+        _width = width;
+        _height = height;
+        Grid = new Sprite[_height, _width];
+        
+        for (int i = 0; i < _height; i++)
         {
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < _width; j++)
             {
                 Grid[i, j] = Sprite.GetRandomSprite();
             }
@@ -27,8 +31,6 @@ public class Board
         Display();
         Task.Delay(100).Wait();
         SelectHeader();
-        
-        Console.Write(Grid[0, 1].Character);
     }
     public void Display()
     {
@@ -37,10 +39,10 @@ public class Board
         SelectHeader();
         Console.WriteLine();
         
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < _height; i++)
         {
             Console.Write(i+1);
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < _width; j++)
             {
                 if (i == XPlayer && j == YPlayer)
                 {
@@ -58,13 +60,13 @@ public class Board
     {
         Console.SetCursorPosition(0, 0);
         Console.Write(' ');
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < _width; i++)
         {
             if (i == SelectedColumn)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
             }
-            Console.Write(Header[i]);
+            Console.Write((char)(acsiiIndexA + i));
             
             Console.ResetColor();
         }
@@ -73,18 +75,18 @@ public class Board
     public void MoveUp()
     {
         var temp = Grid[0, SelectedColumn];
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < _height-1; i++)
         {
             Grid[i, SelectedColumn] = Grid[i+1, SelectedColumn];
         }
-        Grid[7, SelectedColumn] = temp;
+        Grid[_height-1, SelectedColumn] = temp;
         Display();
     }
     
     public void MoveDown()
     {
-        var temp = Grid[7, SelectedColumn];
-        for (int i = 7; i > 0; i--)
+        var temp = Grid[_height-1, SelectedColumn];
+        for (int i = _height-1; i > 0; i--)
         {
             Grid[i, SelectedColumn] = Grid[i-1, SelectedColumn];
         }
