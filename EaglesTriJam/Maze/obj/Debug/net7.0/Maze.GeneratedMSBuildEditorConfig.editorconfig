@@ -8,6 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Maze
-build_property.ProjectDir = C:\Repos\trijam-cellenza-1\EaglesTriJam\Maze\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = c:\s\Bootcamp\GameAthon\TriJamEagles\EaglesTriJam\Maze\

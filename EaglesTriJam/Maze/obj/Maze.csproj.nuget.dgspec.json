@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repos\\trijam-cellenza-1\\EaglesTriJam\\Maze\\Maze.csproj": {}
+    "c:\\s\\Bootcamp\\GameAthon\\TriJamEagles\\EaglesTriJam\\Maze\\Maze.csproj": {}
   },
   "projects": {
-    "C:\\Repos\\trijam-cellenza-1\\EaglesTriJam\\Maze\\Maze.csproj": {
+    "c:\\s\\Bootcamp\\GameAthon\\TriJamEagles\\EaglesTriJam\\Maze\\Maze.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\trijam-cellenza-1\\EaglesTriJam\\Maze\\Maze.csproj",
+        "projectUniqueName": "c:\\s\\Bootcamp\\GameAthon\\TriJamEagles\\EaglesTriJam\\Maze\\Maze.csproj",
         "projectName": "Maze",
-        "projectPath": "C:\\Repos\\trijam-cellenza-1\\EaglesTriJam\\Maze\\Maze.csproj",
-        "packagesPath": "C:\\Users\\PierreDeLachaux\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\trijam-cellenza-1\\EaglesTriJam\\Maze\\obj\\",
+        "projectPath": "c:\\s\\Bootcamp\\GameAthon\\TriJamEagles\\EaglesTriJam\\Maze\\Maze.csproj",
+        "packagesPath": "C:\\Users\\RémiSorlin\\.nuget\\packages\\",
+        "outputPath": "c:\\s\\Bootcamp\\GameAthon\\TriJamEagles\\EaglesTriJam\\Maze\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PierreDeLachaux\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\RémiSorlin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
